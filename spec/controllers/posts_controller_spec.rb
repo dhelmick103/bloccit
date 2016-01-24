@@ -8,12 +8,12 @@ RSpec.describe PostsController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
     end
-  end
+  end 
 
-  it "assigns [my_post] to @posts" do
-    get :index
-    expect(assigns(:posts)).to eq([my_post])
-  end
+    it "assigns [my_post] to @posts" do
+      get :index
+      expect(assigns(:posts)).to eq([my_post])
+    end
 
 #  describe "GET show" do
 #    it "returns http success" do
