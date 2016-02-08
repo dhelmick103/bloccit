@@ -145,7 +145,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-
   context "member user doing CRUD on a post they own" do
     before do
       create_session(my_user)
@@ -258,10 +257,10 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  context "admin user doing CRUD on a post they don't own" do
+  context "moderator user doing CRUD on a post they don't own" do
     before do
-      other_user.admin!
-      create_session(other_user)
+        other_user.moderator!
+        create_session(other_user)
     end
 
     describe "GET show" do
@@ -354,19 +353,6 @@ RSpec.describe PostsController, type: :controller do
 
         put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
         expect(response).to redirect_to [my_topic, my_post]
-      end
-    end
-
-    describe "DELETE destroy" do
-      it "deletes the post" do
-        delete :destroy, topic_id: my_topic.id, id: my_post.id
-        count = Post.where({id: my_post.id}).size
-        expect(count).to eq 0
-      end
-
-      it "redirects to posts index" do
-        delete :destroy, topic_id: my_topic.id, id: my_post.id
-        expect(response).to redirect_to my_topic
       end
     end
   end
