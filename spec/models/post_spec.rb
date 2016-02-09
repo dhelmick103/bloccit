@@ -8,6 +8,8 @@ RSpec.describe Post, type: :model do
  # #4
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
+  it { is_expected.to have_many(:comments) }
+
   it { should belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
   it { should validate_presence_of(:title) }
