@@ -12,6 +12,7 @@ class PostsController < ApplicationController
  # #10
      if @post.save
  # #11
+       @post.labels = Label.update_labels(params[:post][:labels])
        flash[:notice] = "Post was saved."
        redirect_to [@topic, @post]
      else
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params)
 
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was updated."
       redirect_to [@post.topic, @post]
     else
@@ -67,7 +69,7 @@ class PostsController < ApplicationController
       flash[:alert] = "You must be an admin to do that."
       redirect_to [post.topic, post]
     end
-  end 
+  end
 
   private
 
