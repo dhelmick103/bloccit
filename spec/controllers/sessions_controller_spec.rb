@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   let(:my_user) { create(:user) }
+  let(:my_comment) { create(:comment) }
+  let(:my_label) { create(:label) }
+  let(:my_vote) { create(:vote) }
 
   describe "GET new" do
      it "returns http success" do

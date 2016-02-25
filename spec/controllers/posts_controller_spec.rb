@@ -8,6 +8,9 @@ RSpec.describe PostsController, type: :controller do
   let(:my_user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:my_post) { create(:post, topic: my_topic, user: my_user) }
+  let(:my_comment) { create(:comment) }
+  let(:my_label) { create(:label) }
+  let(:my_vote) { create(:vote) }
 
   context "guest" do
     describe "GET show" do

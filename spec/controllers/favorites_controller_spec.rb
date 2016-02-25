@@ -5,6 +5,9 @@ RSpec.describe FavoritesController, type: :controller do
   let(:my_topic) { create(:topic) }
   let(:my_user) { create(:user) }
   let(:my_post) { create(:post, topic: my_topic, user: my_user) }
+  let(:my_comment) { create(:comment) }
+  let(:my_label) { create(:label) }
+  let(:my_vote) { create(:vote) }
 
   context 'guest user' do
     describe 'POST create' do

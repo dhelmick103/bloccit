@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
-  let(:topic) { build(:topic) }
-  
+  let(:topic) { create(:topic) }
+  let(:comment) { create(:comment) }
+  let(:label) { create(:label) }
+  let(:vote) { create(:vote) }
+
   it { should have_many(:posts) }
 
   it { is_expected.to have_many(:labelings) }
