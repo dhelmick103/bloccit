@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
+  let(:user) { create(:user) }
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
@@ -49,6 +49,12 @@ RSpec.describe User, type: :model do
        expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
 
        expect(known_user.avatar_url(48)).to eq(expected_gravatar)
+     end
+   end
+
+   describe "#generate_auth_token" do
+     it "creates a token" do
+       expect(user.auth_token).to_not be_nil
      end
    end
 
@@ -110,7 +116,7 @@ RSpec.describe User, type: :model do
      let(:user_with_invalid_name) { build(:user, name: "") }
      let(:user_with_invalid_email) { build(:user, email: "") }
      let(:user_with_invalid_email_format) { build(:user, email: "invalid_format") }
-     
+
      it "should be an invalid user due to blank name" do
        expect(user_with_invalid_name).to_not be_valid
      end

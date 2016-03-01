@@ -31,7 +31,7 @@ post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
 
 rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 
-end 
+end
 
 posts = Post.all
 
@@ -51,6 +51,27 @@ admin = User.create!(
    password: 'helloworld',
    role:     'admin'
  )
+
+# Create Canyon User
+canyon = User.create!(
+   name:    'Canyon',
+   email:   'canyon.the.malamute@gmail.com',
+   password: 'password',
+   role: 'admin'
+ )
+
+# Create new user Luke
+the_user = User.new(
+   name:    'Lake',
+   email:   'Lake.the.malamute@gmail.com',
+   password: 'password',
+   role: 'admin',
+   auth_token: 'nil',
+   the_user.save!
+)
+# set the expectation that the_user should have an attribute of auth_token set to nil.
+# then save
+#check again, but this time it should NOT be nil
 
  # Create a member
  member = User.create!(
